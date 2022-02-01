@@ -25,26 +25,32 @@ from lib.actions import MongoBaseAction
 
 
 class loadDb(MongoBaseAction):
-    def run(self, alarms):
+    def run(self, logs):
 
         mydb = self.dbclient["app_db"]
-        known = mydb["nimblealarms"]
+        known = mydb["morpheuslogs"]
 
-        new_alarm={}
+        new_log={}
 
-        for alarm in alarms:
-            myquery = { "u_id" : alarm[4] }
+        for l in logs:
+            myquery = { "_id" : l[10] }
             records = known.find(myquery).count()
             if records == 0:
-                new_alarm['u_category']=alarm[3]
-                new_alarm['u_severity']=alarm[2]
-                new_alarm['u_time']=alarm[1]
-                new_alarm['u_status']=alarm[0]
-                new_alarm['u_id']=alarm[4]
-                new_alarm['_id']=alarm[4]
-                new_alarm['u_process']='no'
-                write_record = known.insert_one(new_alarm)
-                new_alarm={}
+                new_log['u_typeCode']=l[0]
+                new_log['u_ts']=l[1]
+                new_log['u_level']=l[2]
+                new_log['u_sourceType']=l[3]
+                new_log['u_message']=l[4]
+                new_log['u_hostname']=l[5]
+                new_log['u_title']=l[6]
+                new_log['u_logSignature']=l[7]
+                new_log['u_objectId']=l[8]
+                new_log['u_seg']=l[9]
+                new_log['u_id']=l[10]
+                new_log['u_signatureVerified']=l[11]
+                new_log['u_process']='no'
+                write_record = known.insert_one(new_log)
+                new_log={}
 
             else:
                 records='Fail to write mongo record, possible duplicate'

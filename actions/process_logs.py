@@ -25,12 +25,12 @@ from lib.actions import MongoBaseAction
 
 
 class loadDb(MongoBaseAction):
-    def run(self, events):
+    def run(self, logs):
 
         mydb = self.dbclient["app_db"]
-        known = mydb["nimblealarms"]
+        known = mydb["morpheus-logs"]
 
-        for e in events:
-            known.updateOne({"_id":e['_id']},{"$set":{"u_process":"yes"}})
+        for l in logs:
+            known.updateOne({"_id":l['_id']},{"$set":{"u_process":"yes"}})
 
         return ()
