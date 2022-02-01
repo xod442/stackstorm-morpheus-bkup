@@ -42,7 +42,7 @@ class LogData(MorpheusBaseAction):
                     i['title'],
                     i['logSignature'],
                     i['objectId'],
-                    i['seg'],
+                    i['seq'],
                     i['_id'],
                     i['signatureVerified']
                     ]

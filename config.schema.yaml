@@ -1,5 +1,5 @@
 ---
-ipaddress:
+host:
   description: "IP address of the Morpheus (e.g.: 'fqdn.to.device' or '10.10.10.10')"
   type: "string"
   secret: false
