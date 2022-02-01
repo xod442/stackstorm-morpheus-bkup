@@ -1,4 +1,3 @@
-# (C) Copyright 2019 Hewlett Packard Enterprise Development LP.
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +15,7 @@
 # __credits__ = ["Rick Kauffman"]
 # __license__ = "Apache2.0"
 # __maintainer__ = "Rick Kauffman."
-# __email__ = "rick.a.kauffman@hpe.com"""
+# __email__ = "rick@riickkauffman.com"
 
 import pymongo
 from pymongo import MongoClient
