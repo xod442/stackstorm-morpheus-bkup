@@ -25,7 +25,7 @@ from pypheus.logs import Logs
 from datetime import datetime
 
 
-class LogData(MorpeusBaseAction):
+class LogData(MorpheusBaseAction):
     def run(self):
         log_list = []
         logs = Logs(self.client[0],self.client[1],self.client[2])
