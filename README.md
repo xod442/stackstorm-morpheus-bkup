@@ -50,7 +50,14 @@ Actions are defined in two groups:
 This application uses the mongo db installed by StackStorm. Since the DB is secured
 you will need to log into the StackStorm mongo DB as a StackStorm admin and create a separate DB
 
-# To get this pack to work with StackStorm mongo DB
+# To get this pack to work with A SINGLE HOST DEPLOYMENT StackStorm mongo DB
+You can ignore this section when using StackStorm in docker containers. There is
+no username and password associated with the database running in the mongo container.
+Use at your own discretion.
+ 
+```
+docker pull stackstorm/stackstorm
+```
 
 log in with admin first
 --------------------------------------------------------------------------------------

@@ -45,7 +45,7 @@ class loadDb(MongoBaseAction):
                 new_log['u_title']=l[6]
                 new_log['u_logSignature']=l[7]
                 new_log['u_objectId']=l[8]
-                new_log['u_seg']=l[9]
+                new_log['u_seq']=l[9]
                 new_log['u_id']=l[10]
                 new_log['u_signatureVerified']=l[11]
                 new_log['u_process']='no'
