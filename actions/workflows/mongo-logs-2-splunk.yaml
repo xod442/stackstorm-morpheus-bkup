@@ -15,10 +15,9 @@ tasks:
     next:
       - when: <% succeeded() %>
         publish:
-          - logs: <% result().result %>
+          - events: <% result().result %>
         do: sendsplunk
 
   sendsplunk:
     with: <% ctx().logs %>
     action: splunk.send_log index="main" token=<% ctx().token event='<% item() %>'
-    
