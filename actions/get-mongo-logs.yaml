@@ -1,7 +1,7 @@
 ---
 name: get-mongo-logs
 pack: morpheus
-description: get Morpheus logs from the mongo db
+description: Get Morpheus logs from mongo db
 runner_type: python-script
 entry_point: get-mongo-logs.py
 enabled: true

@@ -3,20 +3,22 @@ version: 1.0
 description: A workflow to copy Morpheus logs from mongo and into splunk..
 
 tasks:
-  getalerts:
+  gettoken:
+    action: splunk.get_hec_token
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - token: <% result().result %>
+        do: getlogs
+  getlogs:
     action: morpheus.get_logs
     next:
       - when: <% succeeded() %>
         publish:
           - logs: <% result().result %>
-        do: logalerts
+        do: sendsplunk
 
-  logalerts:
-    with: <% ctx().events %>
-    action: servicenow.create_record table="u_nimble_alarms" payload='<% item() %>'
-    next:
-      - when: <% succeeded() %>
-        do: processlogs
-
-  processlogs:
-    action: morpheus.process_logs logs=<% ctx().alarms %>
+  sendsplunk:
+    with: <% ctx().logs %>
+    action: splunk.send_log index="main" token=<% ctx().token event='<% item() %>'
+    
