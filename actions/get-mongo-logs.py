@@ -20,6 +20,7 @@
 
 import pymongo
 from lib.actions import MongoBaseAction
+import json
 
 
 class getDb(MongoBaseAction):
@@ -47,6 +48,7 @@ class getDb(MongoBaseAction):
             log['u_seq'] = r['u_seq']
             log['u_id'] = r['u_id']
             log['u_signatureVerified'] = r['u_signatureVerified']
+            log = json.dumps(log)
             list_to_process.append(log)
             log = {}
 
