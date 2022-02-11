@@ -11,7 +11,7 @@ tasks:
           - token: <% result().result %>
         do: getlogs
   getlogs:
-    action: morpheus.get_logs
+    action: morpheus.get-mongo-logs
     next:
       - when: <% succeeded() %>
         publish:

@@ -48,4 +48,5 @@ class LogData(MorpheusBaseAction):
                     ]
 
             log_list.append(info)
+            info =[]
         return log_list

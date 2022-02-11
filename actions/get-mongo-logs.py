@@ -34,6 +34,21 @@ class getDb(MongoBaseAction):
         records = known.find(myquery)
 
         for r in records:
+            info = [
+            r['u_typeCode'],
+            r['u_ts'],
+            r['u_level'],
+            r['u_sourceType'],
+            r['u_message'],
+            r['u_host'],
+            r['u_title'],
+            r['u_logSignature'],
+            r['u_objectId'],
+            r['u_seq'],
+            r['u_id'],
+            r['u_signatureVerified']
+            ]
             list_to_process.append(r)
+            info = []
 
         return (list_to_process)

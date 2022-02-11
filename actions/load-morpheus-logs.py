@@ -33,7 +33,7 @@ class loadDb(MongoBaseAction):
         new_log={}
 
         for l in logs:
-            myquery = { "_id" : l[10] }
+            myquery = { "u_id" : l[10] }
             records = known.find(myquery).count()
             if records == 0:
                 new_log['u_typeCode']=l[0]
