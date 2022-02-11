@@ -29,6 +29,7 @@ class getDb(MongoBaseAction):
         known = mydb["morpheuslogs"]
 
         list_to_process = []
+        log = {}
 
         myquery = { "u_process" : 'no' }
         records = list(known.find(myquery))
