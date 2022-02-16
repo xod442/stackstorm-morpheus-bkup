@@ -4,7 +4,7 @@ description: A workflow to copy Morpheus logs from mongo and into splunk..
 
 tasks:
   gettoken:
-    action: splunk.get_hec_token
+    action: splunk.get_hec_token instance="prod"
     next:
       - when: <% succeeded() %>
         publish:
@@ -20,4 +20,4 @@ tasks:
 
   sendsplunk:
     with: <% ctx().logs %>
-    action: splunk.send_log index="main" token=<% ctx().token %> event='<% item() %>'
+    action: splunk.send_log instance="prod" index="main" token=<% ctx().token %> event='<% item() %>'
