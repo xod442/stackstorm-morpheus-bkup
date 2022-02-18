@@ -19,16 +19,19 @@
 # __email__ = "rick@rickkauffman.com"
 
 import urllib3
-urllib3.disable_warnings()
 from lib.actions import MorpheusBaseAction
 from pypheus.logs import Logs
-from datetime import datetime
+urllib3.disable_warnings()
+
+__all__ = [
+    'LogData'
+]
 
 
 class LogData(MorpheusBaseAction):
     def run(self):
         log_list = []
-        logs = Logs(self.client[0],self.client[1],self.client[2])
+        logs = Logs(self.client[0], self.client[1], self.client[2])
         log_data = logs.get_all_logs()
 
         for i in log_data['data']:
@@ -48,5 +51,5 @@ class LogData(MorpheusBaseAction):
                     ]
 
             log_list.append(info)
-            info =[]
+            info = []
         return log_list

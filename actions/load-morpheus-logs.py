@@ -18,41 +18,43 @@
 # __maintainer__ = "Rick Kauffman"
 # __email__ = "rick#rickkauffman.com"
 
-
-
-import pymongo
 from lib.actions import MongoBaseAction
 
+__all__ = [
+    'LoadDb'
+]
 
-class loadDb(MongoBaseAction):
+
+class LoadDb(MongoBaseAction):
     def run(self, logs):
 
         mydb = self.dbclient["app_db"]
         known = mydb["morpheuslogs"]
 
-        new_log={}
+        new_log = {}
 
-        for l in logs:
-            myquery = { "u_id" : l[10] }
+        for log in logs:
+            myquery = {"u_id": logs[10]}
             records = known.find(myquery).count()
             if records == 0:
-                new_log['u_typeCode']=l[0]
-                new_log['u_ts']=l[1]
-                new_log['u_level']=l[2]
-                new_log['u_sourceType']=l[3]
-                new_log['u_message']=l[4]
-                new_log['u_hostname']=l[5]
-                new_log['u_title']=l[6]
-                new_log['u_logSignature']=l[7]
-                new_log['u_objectId']=l[8]
-                new_log['u_seq']=l[9]
-                new_log['u_id']=l[10]
-                new_log['u_signatureVerified']=l[11]
-                new_log['u_process']='no'
+                new_log['u_typeCode'] = log[0]
+                new_log['u_ts'] = log[1]
+                new_log['u_level'] = log[2]
+                new_log['u_sourceType'] = log[3]
+                new_log['u_message'] = log[4]
+                new_log['u_hostname'] = log[5]
+                new_log['u_title'] = log[6]
+                new_log['u_logSignature'] = log[7]
+                new_log['u_objectId'] = log[8]
+                new_log['u_seq'] = log[9]
+                new_log['u_id'] = log[10]
+                new_log['u_signatureVerified'] = log[11]
+                new_log['u_process'] = 'no'
                 write_record = known.insert_one(new_log)
-                new_log={}
+                print(write_record)
+                new_log = {}
 
             else:
-                records='Fail to write mongo record, possible duplicate'
+                records = 'Fail to write mongo record, possible duplicate'
                 # write_record = process.insert_one(alarm)
         return (records)

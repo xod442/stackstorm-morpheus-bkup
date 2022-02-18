@@ -18,12 +18,15 @@
 # __maintainer__ = "Rick Kauffman"
 # __email__ = "rick#rickkauffman.com"
 
-import pymongo
 from lib.actions import MongoBaseAction
 import json
 
+__all__ = [
+    'GetDb'
+]
 
-class getDb(MongoBaseAction):
+
+class GetDb(MongoBaseAction):
     def run(self):
 
         mydb = self.dbclient["app_db"]
@@ -32,7 +35,7 @@ class getDb(MongoBaseAction):
         list_to_process = []
         log = {}
 
-        myquery = { "u_process" : 'no' }
+        myquery = {"u_process": 'no'}
         records = list(known.find(myquery))
 
         for r in records:
@@ -51,7 +54,5 @@ class getDb(MongoBaseAction):
             log = json.dumps(log)
             list_to_process.append(log)
             log = {}
-
-
 
         return (list_to_process)

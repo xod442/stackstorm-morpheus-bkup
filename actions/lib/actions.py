@@ -17,14 +17,16 @@
 # __maintainer__ = "Rick Kauffman."
 # __email__ = "rick@riickkauffman.com"
 
-import pymongo
 from pymongo import MongoClient
-from pypheus.auth import Auth
-from datetime import datetime
 from st2common.runners.base_action import Action
 
+__all__ = [
+    'MorpheusBaseAction'
+]
+
+
 class MorpheusBaseAction(Action):
-    def __init__(self,config):
+    def __init__(self, config):
         super(MorpheusBaseAction, self).__init__(config=config)
         self.client = self._get_client()
 
@@ -33,21 +35,24 @@ class MorpheusBaseAction(Action):
         username = self.config['username']
         password = self.config['password']
 
-        client=[host,username,password]
+        client = [host, username, password]
 
         return client
 
+
 class MongoBaseAction(Action):
-    def __init__(self,config):
+    def __init__(self, config):
         super(MongoBaseAction, self).__init__(config=config)
         self.dbclient = self._get_db_client()
 
     def _get_db_client(self):
-        dbuser = self.config['dbuser']
-        dbpass = self.config['dbpass']
+        # Uncomment dbuser & dbpass if using password protected mongo database
+        # dbuser = self.config['dbuser']
+        # dbpass = self.config['dbpass']
 
         # If running stackstorm in a singlehost deployment use this command
-        # dbclient = MongoClient('mongodb://%s:%s@localhost:27017/' % (dbuser,dbpass))
+        # dbclient =
+        # MongoClient('mongodb://%s:%s@localhost:27017/' % (dbuser,dbpass))
 
         # If youing stackstorm in multiple docker containers use this command
         dbclient = MongoClient('mongodb://mongo:27017/')

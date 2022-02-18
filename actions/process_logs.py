@@ -18,19 +18,20 @@
 # __maintainer__ = "Rick Kauffman"
 # __email__ = "rick@rickkauffman.com"
 
-
-
-import pymongo
 from lib.actions import MongoBaseAction
 
+__all__ = [
+    'LoadDb'
+]
 
-class loadDb(MongoBaseAction):
+
+class LoadDb(MongoBaseAction):
     def run(self, logs):
 
         mydb = self.dbclient["app_db"]
-        known = mydb["morpheus-logs"]
+        col = mydb["morpheus-logs"]
 
-        for l in logs:
-            known.updateOne({"_id":l['_id']},{"$set":{"u_process":"yes"}})
+        for log in logs:
+            col.updateOne({"_id": log['_id']}, {"$set": {"u_process": "yes"}})
 
         return ()
